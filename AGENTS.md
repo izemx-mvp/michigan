@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project architecture
+- Keep catalogue content and public business configuration in typed source modules, with TanStack file-based routes and shared storefront UI; this keeps the initial catalogue maintainable before its planned WooCommerce rebuild.
