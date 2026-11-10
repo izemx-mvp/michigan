@@ -1,23 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
+import { Hero } from "@/components/home/Hero";
+import { Estimator } from "@/components/home/Estimator";
+import {
+  FeaturedProducts,
+  FinalCta,
+  LatestPosts,
+  MarqueeBand,
+  RooftopSpotlight,
+  SectorsSection,
+  SubcategoryRail,
+  UmareqBand,
+  UniversesSection,
+  WhyMichigan,
+} from "@/components/home/Sections";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () =>
+    seo({
+      title: "Climatisation & ventilation au Maroc",
+      description:
+        "Climatisation et ventilation pour l'habitat, le tertiaire et l'industrie au Maroc : rooftops de 7.5 à 30 RT, split systèmes, caissons et accessoires. Distribué par UMAREQ.",
+      path: "/",
+    }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="overflow-x-clip">
+      <Hero />
+      <MarqueeBand />
+      <UniversesSection />
+      <SubcategoryRail />
+      <FeaturedProducts />
+      <Estimator />
+      <WhyMichigan />
+      <SectorsSection />
+      <UmareqBand />
+      <RooftopSpotlight />
+      <LatestPosts />
+      <FinalCta />
     </div>
   );
 }

@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as CgvRouteImport } from './routes/cgv'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DemandeEnvoyeeRouteImport } from './routes/demande-envoyee'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PanierRouteImport } from './routes/panier'
+import { Route as RechercheRouteImport } from './routes/recherche'
+import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as CategorieSlugRouteImport } from './routes/categorie.$slug'
+import { Route as ProduitSlugRouteImport } from './routes/produit.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AProposRoute = AProposRouteImport.update({
+  id: '/a-propos',
+  path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CgvRoute = CgvRouteImport.update({
+  id: '/cgv',
+  path: '/cgv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemandeEnvoyeeRoute = DemandeEnvoyeeRouteImport.update({
+  id: '/demande-envoyee',
+  path: '/demande-envoyee',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanierRoute = PanierRouteImport.update({
+  id: '/panier',
+  path: '/panier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RechercheRoute = RechercheRouteImport.update({
+  id: '/recherche',
+  path: '/recherche',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorieSlugRoute = CategorieSlugRouteImport.update({
+  id: '/categorie/$slug',
+  path: '/categorie/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProduitSlugRoute = ProduitSlugRouteImport.update({
+  id: '/produit/$slug',
+  path: '/produit/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/cgv': typeof CgvRoute
+  '/contact': typeof ContactRoute
+  '/demande-envoyee': typeof DemandeEnvoyeeRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/panier': typeof PanierRoute
+  '/recherche': typeof RechercheRoute
+  '/solutions': typeof SolutionsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/categorie/$slug': typeof CategorieSlugRoute
+  '/produit/$slug': typeof ProduitSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/cgv': typeof CgvRoute
+  '/contact': typeof ContactRoute
+  '/demande-envoyee': typeof DemandeEnvoyeeRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/panier': typeof PanierRoute
+  '/recherche': typeof RechercheRoute
+  '/solutions': typeof SolutionsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/categorie/$slug': typeof CategorieSlugRoute
+  '/produit/$slug': typeof ProduitSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-propos': typeof AProposRoute
+  '/cgv': typeof CgvRoute
+  '/contact': typeof ContactRoute
+  '/demande-envoyee': typeof DemandeEnvoyeeRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/panier': typeof PanierRoute
+  '/recherche': typeof RechercheRoute
+  '/solutions': typeof SolutionsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/categorie/$slug': typeof CategorieSlugRoute
+  '/produit/$slug': typeof ProduitSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/a-propos'
+    | '/cgv'
+    | '/contact'
+    | '/demande-envoyee'
+    | '/mentions-legales'
+    | '/panier'
+    | '/recherche'
+    | '/solutions'
+    | '/blog/$slug'
+    | '/categorie/$slug'
+    | '/produit/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/cgv'
+    | '/contact'
+    | '/demande-envoyee'
+    | '/mentions-legales'
+    | '/panier'
+    | '/recherche'
+    | '/solutions'
+    | '/blog/$slug'
+    | '/categorie/$slug'
+    | '/produit/$slug'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/a-propos'
+    | '/cgv'
+    | '/contact'
+    | '/demande-envoyee'
+    | '/mentions-legales'
+    | '/panier'
+    | '/recherche'
+    | '/solutions'
+    | '/blog/$slug'
+    | '/categorie/$slug'
+    | '/produit/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AProposRoute: typeof AProposRoute
+  CgvRoute: typeof CgvRoute
+  ContactRoute: typeof ContactRoute
+  DemandeEnvoyeeRoute: typeof DemandeEnvoyeeRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PanierRoute: typeof PanierRoute
+  RechercheRoute: typeof RechercheRoute
+  SolutionsRoute: typeof SolutionsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  CategorieSlugRoute: typeof CategorieSlugRoute
+  ProduitSlugRoute: typeof ProduitSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/a-propos': {
+      id: '/a-propos'
+      path: '/a-propos'
+      fullPath: '/a-propos'
+      preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cgv': {
+      id: '/cgv'
+      path: '/cgv'
+      fullPath: '/cgv'
+      preLoaderRoute: typeof CgvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demande-envoyee': {
+      id: '/demande-envoyee'
+      path: '/demande-envoyee'
+      fullPath: '/demande-envoyee'
+      preLoaderRoute: typeof DemandeEnvoyeeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panier': {
+      id: '/panier'
+      path: '/panier'
+      fullPath: '/panier'
+      preLoaderRoute: typeof PanierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recherche': {
+      id: '/recherche'
+      path: '/recherche'
+      fullPath: '/recherche'
+      preLoaderRoute: typeof RechercheRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categorie/$slug': {
+      id: '/categorie/$slug'
+      path: '/categorie/$slug'
+      fullPath: '/categorie/$slug'
+      preLoaderRoute: typeof CategorieSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produit/$slug': {
+      id: '/produit/$slug'
+      path: '/produit/$slug'
+      fullPath: '/produit/$slug'
+      preLoaderRoute: typeof ProduitSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AProposRoute: AProposRoute,
+  CgvRoute: CgvRoute,
+  ContactRoute: ContactRoute,
+  DemandeEnvoyeeRoute: DemandeEnvoyeeRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  PanierRoute: PanierRoute,
+  RechercheRoute: RechercheRoute,
+  SolutionsRoute: SolutionsRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  CategorieSlugRoute: CategorieSlugRoute,
+  ProduitSlugRoute: ProduitSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
