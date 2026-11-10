@@ -52,8 +52,9 @@ export const site: SiteConfig = {
   figures: [],
   // Valeurs indicatives (W/m²), modifiables.
   estimator: { wattsPerM2: { chambre: 100, salon: 120, bureau: 130, commerce: 150 } },
-  logo: "", // PLACEHOLDER — ex. "/images/logo/michigan-logo.png"
-  logoWhite: "", // PLACEHOLDER — ex. "/images/logo/michigan-logo-white.png"
+  logo: "/images/logo/michigan-logo.png",
+  // Version blanche dédiée (optionnel) ; sinon le logo principal est passé en blanc via CSS sur fond sombre.
+  logoWhite: "",
   ogImage: "/images/divers/og-image.webp",
 };
 
