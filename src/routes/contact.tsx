@@ -84,7 +84,6 @@ function ContactView({ initialSubject }: { initialSubject: Subject }) {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    // Static success for now — no message is actually sent yet.
     setSent(true);
   };
 
