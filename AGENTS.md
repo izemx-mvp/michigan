@@ -31,3 +31,4 @@ use the editor.
 
 ## Project architecture
 - Keep catalogue content and public business configuration in typed source modules, with TanStack file-based routes and shared storefront UI; this keeps the initial catalogue maintainable before its planned WooCommerce rebuild.
+- Keep public enquiry writes behind Zod-validated same-origin server routes, using the server-only Cloud client so anonymous visitors cannot read stored submissions.
