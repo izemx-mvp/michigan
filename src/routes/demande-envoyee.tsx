@@ -112,7 +112,7 @@ function RequestSentPage() {
       </section>
 
       {/* ============================ TICKET ============================ */}
-      <section className="relative bg-ice-50/60 pb-20">
+      <section className="relative overflow-x-clip bg-ice-50/60 pb-20">
         <div className="container-page">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 60, rotate: -2 }}

@@ -78,14 +78,14 @@ function CartHeader({ step, count }: { step: 1 | 2; count: number }) {
         </div>
         <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="break-words font-display text-[2.1rem] font-extrabold leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">
               Votre demande <span className="text-sky-300">de devis</span>
             </h1>
             <p className="mt-4 max-w-xl text-white/70">
               Vérifiez vos produits puis indiquez vos coordonnées. Nos conseillers vous recontactent avec une proposition chiffrée.
             </p>
           </div>
-          <ol className="flex items-center gap-2 text-sm" aria-label="Étapes">
+          <ol className="flex flex-wrap items-center gap-2 text-sm" aria-label="Étapes">
             {steps.map((s, i) => {
               const done = i + 1 < step;
               const on = i + 1 === step;
@@ -188,7 +188,7 @@ function CartPage() {
     return (
       <>
         <CartHeader step={1} count={0} />
-        <section className="bg-ice-50/60 py-16 md:py-24">
+        <section className="overflow-x-clip bg-ice-50/60 py-16 md:py-24">
           <div className="container-page">
             <div className="mx-auto max-w-3xl text-center">
               <motion.span
@@ -242,10 +242,10 @@ function CartPage() {
   return (
     <>
       <CartHeader step={2} count={totalQty} />
-      <section className="bg-ice-50/60 py-12 md:py-16">
-        <div className="container-page grid gap-10 lg:grid-cols-[1fr_460px]">
+      <section className="overflow-x-clip bg-ice-50/60 py-12 md:py-16">
+        <div className="container-page grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_460px]">
           {/* Lines */}
-          <div>
+          <div className="min-w-0">
             <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-muted">01 — Vos produits</p>
             <ul className="flex flex-col gap-4">
               <AnimatePresence initial={false}>
@@ -257,7 +257,7 @@ function CartPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, x: -60, transition: { duration: 0.25 } }}
                     transition={{ duration: 0.4, ease: EASE }}
-                    className="group relative flex flex-col gap-5 overflow-hidden rounded-[24px] bg-white p-5 shadow-card sm:flex-row sm:items-center"
+                    className="group relative flex min-w-0 flex-col gap-5 overflow-hidden rounded-[24px] bg-white p-5 shadow-card sm:flex-row sm:items-center"
                   >
                     <span className="absolute right-5 top-3 font-display text-5xl font-extrabold text-navy-900/[0.05]">{pad(i + 1)}</span>
                     <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-b from-ice-50 to-[#dcebf8]">
@@ -272,10 +272,10 @@ function CartPage() {
                       />
                     </div>
                     <div className="relative min-w-0 flex-1">
-                      <AppLink href={productHref(l.product.slug)} className="font-display text-lg font-bold leading-tight text-navy-900 hover:text-[#1a6fc7]">
+                      <AppLink href={productHref(l.product.slug)} className="break-words font-display text-lg font-bold leading-tight text-navy-900 hover:text-[#1a6fc7]">
                         {l.product.name}
                       </AppLink>
-                      <p className="mt-1 font-mono text-xs text-slate-muted">Réf. {l.product.sku}</p>
+                      <p className="mt-1 truncate font-mono text-xs text-slate-muted">Réf. {l.product.sku}</p>
                       <p className="mt-3 inline-block rounded-full bg-ice-50 px-3 py-1 text-xs font-semibold text-navy-900">Prix sur devis</p>
                     </div>
                     <div className="relative flex items-center gap-2">
@@ -306,11 +306,11 @@ function CartPage() {
           </div>
 
           {/* Form */}
-          <div>
+          <div className="min-w-0">
             <form
               onSubmit={onSubmit}
               noValidate
-              className="rounded-[28px] bg-white p-6 shadow-[0_40px_100px_-40px_rgba(10,36,99,0.4)] sm:p-8 lg:sticky lg:top-28"
+              className="min-w-0 rounded-[28px] bg-white p-5 shadow-[0_40px_100px_-40px_rgba(10,36,99,0.4)] sm:p-8 lg:sticky lg:top-28"
               aria-labelledby="form-title"
             >
               <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-muted">02 — Coordonnées</p>
@@ -332,7 +332,7 @@ function CartPage() {
                       <label
                         key={t}
                         className={cn(
-                          "relative flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-semibold transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-sky-300",
+                          "relative flex min-w-0 cursor-pointer items-center justify-center gap-2 rounded-xl px-2 py-3 text-sm font-semibold transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-sky-300",
                           on ? "text-white" : "text-slate-muted hover:text-navy-900",
                         )}
                       >
@@ -344,8 +344,8 @@ function CartPage() {
                           />
                         )}
                         <input type="radio" name="type" value={t} checked={on} onChange={() => set("type", t)} className="sr-only" />
-                        <Icon className="relative h-4 w-4" aria-hidden="true" />
-                        <span className="relative">{label}</span>
+                        <Icon className="relative h-4 w-4 shrink-0 max-[379px]:hidden" aria-hidden="true" />
+                        <span className="relative truncate">{label}</span>
                       </label>
                     );
                   })}
@@ -398,7 +398,7 @@ function CartPage() {
                         <label
                           key={v}
                           className={cn(
-                            "flex cursor-pointer flex-col items-center gap-1.5 rounded-2xl border-2 px-2 py-3 text-xs font-semibold transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-sky-300",
+                            "flex min-w-0 cursor-pointer flex-col items-center gap-1.5 rounded-2xl border-2 px-1 py-3 text-xs font-semibold transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-sky-300",
                             on ? "border-[#1a6fc7] bg-[#1a6fc7]/[0.07] text-navy-900" : "border-border bg-white text-slate-muted hover:border-navy-900/30",
                           )}
                         >
@@ -414,11 +414,12 @@ function CartPage() {
 
               <div className="mt-8 border-t border-border pt-6">
                 <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-muted">03 — Envoi</p>
-                <button type="submit" className="btn btn-whatsapp w-full py-4 text-base">
-                  <WhatsAppIcon className="h-5 w-5" />
-                  Envoyer la demande via WhatsApp
+                <button type="submit" className="btn btn-whatsapp h-auto min-h-12 w-full whitespace-normal py-3.5 text-center text-sm sm:text-base">
+                  <WhatsAppIcon className="h-5 w-5 shrink-0" />
+                  <span className="sm:hidden">Envoyer via WhatsApp</span>
+                  <span className="hidden sm:inline">Envoyer la demande via WhatsApp</span>
                 </button>
-                <button type="button" onClick={onEmail} className="btn btn-outline mt-3 w-full">
+                <button type="button" onClick={onEmail} className="btn btn-outline mt-3 h-auto min-h-12 w-full whitespace-normal">
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   Envoyer par email
                 </button>

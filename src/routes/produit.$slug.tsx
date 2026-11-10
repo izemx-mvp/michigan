@@ -151,10 +151,12 @@ function ProductView({ product }: { product: Product }) {
       {/* ============================================================ */}
       {/* HERO: gallery + buy box                                       */}
       {/* ============================================================ */}
-      <section className="relative isolate bg-gradient-to-b from-ice-50 to-white">
+      <section className="relative isolate overflow-x-clip bg-gradient-to-b from-ice-50 to-white">
         <div aria-hidden="true" className="absolute -right-40 top-0 -z-10 h-[520px] w-[520px] rounded-full bg-sky-300/30 blur-[140px]" />
         <div className="container-page pb-20 pt-8 md:pt-10">
-          <Breadcrumbs items={crumbs} />
+          <div className="min-w-0 overflow-hidden">
+            <Breadcrumbs items={crumbs} />
+          </div>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-14">
             <div className="min-w-0">
@@ -176,7 +178,7 @@ function ProductView({ product }: { product: Product }) {
                   <AvailabilityBadge availability={product.availability} />
                 </div>
 
-                <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-navy-900 sm:text-5xl animate-in fade-in slide-in-from-bottom-3 duration-700 fill-mode-both motion-reduce:animate-none">
+                <h1 className="mt-5 break-words font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-navy-900 sm:text-5xl animate-in fade-in slide-in-from-bottom-3 duration-700 fill-mode-both motion-reduce:animate-none">
                   {product.name}
                 </h1>
 
@@ -236,8 +238,8 @@ function ProductView({ product }: { product: Product }) {
 
                 {/* Purchase card */}
                 <div className="mt-8 rounded-[24px] border border-border bg-white p-5 shadow-[0_20px_50px_-25px_rgba(10,36,99,0.35)] sm:p-6">
-                  <div className="flex items-end justify-between gap-4">
-                    <div>
+                  <div className="flex flex-wrap items-end justify-between gap-4">
+                    <div className="min-w-0">
                       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-muted">Tarif</p>
                       <PriceLabel product={product} className="mt-1 font-display text-2xl font-extrabold text-navy-900" />
                     </div>
@@ -330,7 +332,7 @@ function ProductView({ product }: { product: Product }) {
                   className="flex flex-col-reverse lg:px-8 lg:first:pl-0"
                 >
                   <dt className="mt-1 text-xs uppercase tracking-[0.2em] text-white/50">{s.label}</dt>
-                  <dd className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{s.value}</dd>
+                  <dd className="break-words font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{s.value}</dd>
                 </motion.div>
               ))}
             </dl>
@@ -400,7 +402,7 @@ function ProductView({ product }: { product: Product }) {
                       className={cn("grid grid-cols-[1fr_auto] items-center gap-6 px-6 py-4 sm:grid-cols-2", i % 2 === 0 ? "bg-white" : "bg-ice-50/70")}
                     >
                       <dt className="text-sm text-slate-muted">{s.label}</dt>
-                      <dd className={cn("text-right text-sm font-semibold sm:text-left", empty ? "italic text-slate-muted" : "text-navy-900")}>
+                      <dd className={cn("min-w-0 break-words text-right text-sm font-semibold sm:text-left", empty ? "italic text-slate-muted" : "text-navy-900")}>
                         {s.value}
                       </dd>
                     </div>
@@ -487,20 +489,30 @@ function ProductView({ product }: { product: Product }) {
       {related.length > 0 && <RelatedCarousel items={related} />}
 
       {/* Mobile sticky bar */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-white/95 p-3 backdrop-blur-xl lg:hidden">
-        <div className="flex items-center gap-3">
-          <img src={product.images[0]} alt="" width={44} height={44} className="h-11 w-11 shrink-0 rounded-xl bg-ice-50 object-contain p-1" />
-          <div className="min-w-0 flex-1">
+      <div className="fixed bottom-0 left-0 right-0 z-30 w-full max-w-[100vw] overflow-hidden border-t border-border bg-white/95 px-3 py-2.5 backdrop-blur-xl lg:hidden">
+        <div className="flex w-full min-w-0 items-center gap-2.5">
+          <img
+            src={product.images[0]}
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 rounded-lg bg-ice-50 object-cover"
+          />
+          <div className="min-w-0 flex-1 overflow-hidden">
             <p className="truncate text-sm font-semibold text-navy-900">{product.name}</p>
-            <p className="text-xs text-slate-muted">Prix sur devis</p>
+            <p className="truncate text-xs text-slate-muted">Prix sur devis</p>
           </div>
           <button
             type="button"
             onClick={handleAdd}
-            className={cn("btn btn-sm", added ? "bg-[#12A26B] text-white" : "btn-primary")}
+            aria-label="Ajouter au panier"
+            className={cn(
+              "inline-flex h-10 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-semibold transition-colors",
+              added ? "bg-[#12A26B] text-white" : "bg-[#1a6fc7] text-white hover:bg-navy-900",
+            )}
           >
             {added ? <Check className="h-4 w-4" aria-hidden="true" /> : <ShoppingCart className="h-4 w-4" aria-hidden="true" />}
-            {added ? "Ajouté" : "Ajouter"}
+            <span className="max-[359px]:sr-only">{added ? "Ajouté" : "Ajouter"}</span>
           </button>
         </div>
       </div>
@@ -601,7 +613,7 @@ function Gallery({ product }: { product: Product }) {
   return (
     <div className={cn("flex flex-col-reverse gap-4", many && "sm:flex-row")}>
       {many && (
-        <ul className="flex gap-3 sm:flex-col" aria-label="Miniatures">
+        <ul className="scrollbar-none flex max-w-full gap-3 overflow-x-auto sm:flex-col sm:overflow-visible" aria-label="Miniatures">
           {product.images.map((img, i) => (
             <li key={img}>
               <button
@@ -610,7 +622,7 @@ function Gallery({ product }: { product: Product }) {
                 aria-label={`Afficher la vue ${i + 1}`}
                 aria-pressed={i === active}
                 className={cn(
-                  "relative h-20 w-20 overflow-hidden rounded-2xl border-2 bg-white transition-all",
+                  "relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 bg-white transition-all",
                   i === active ? "border-navy-900 shadow-[0_8px_20px_-8px_rgba(10,36,99,0.5)]" : "border-transparent opacity-70 hover:opacity-100",
                 )}
               >
